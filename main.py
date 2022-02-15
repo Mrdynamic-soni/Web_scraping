@@ -11,7 +11,7 @@ headers = {
 }
 
 #opening excel file where all the links are stored
-wb = xlrd.open_workbook("C:\\Users\\Acer\\Desktop\\assignment\\input.xlsx")  #opening complete workbook
+wb = xlrd.open_workbook("C:\\Users\\Acer\\Desktop\\black_coffer\\input.xlsx")  #opening complete workbook
 sheet = wb.sheet_by_index(0)    #opening particular worksheet i.e. excel
 sheet.cell_value(0,0)  #initial point of excel
 
@@ -23,7 +23,7 @@ for i in range(1,sheet.nrows+1):
     url = sheet.cell_value(i,1)  # storing that data in url to extract data in file
     req = requests.get(url,headers=headers) # hitting wesite to scrape the data from that particular website
     soup = BeautifulSoup(req.text,"html.parser")  # #using bs4 library to beautify the data scraaped from website
-    with open(f"C:\\Users\\Acer\\Desktop\\assignment\\scraped_files\\{i}.txt","a", encoding='UTF-8')as file:  # creating diffirent file with filename as i.txt to store the scraped data from website
+    with open(f"C:\\Users\\Acer\\Desktop\\black_coffer\\scraped_files\\{i}.txt","a", encoding='UTF-8')as file:  # creating diffirent file with filename as i.txt to store the scraped data from website
         for item in soup.find_all('p'): #iterating over the website data 
             print(item.get_text())  # printing extractred data 
             file.write(item.get_text()) # append data in file
